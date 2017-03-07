@@ -1,6 +1,7 @@
 $(function() {
 
 $('#start-button').on('click', gameHandler);
+$('.game-button').on('click', playbackHandler)
 
 })
 
@@ -29,15 +30,14 @@ var gameHandler = function() {
   }
  };
 
+
 var activateSequence = function() {
     generateButtonSequence();
   }
 
-
 var generateButtonSequence = function() {
   var randomButton = generateRandom();
   activateButton(randomButton);
-  console.log('sequence generated')
 }
 
 var generateRandom = function() {
@@ -72,5 +72,13 @@ var activateButton = function(randomButton) {
       break;
   }
 }
+
+var userPlayback = [];
+
+var playbackHandler = function() {
+  var thisButton = $(this).attr('value');
+  userPlayback.push(thisButton);
+}
+
 
 
