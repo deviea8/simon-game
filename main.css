@@ -1,0 +1,44 @@
+
+
+.game-board {
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+
+.button1 {
+  background: #2E8B57;
+  width: 200px;
+  height: 200px;
+}
+
+.button2 {
+  background: #FFFF7F;
+  width: 200px;
+  height: 200px;
+}
+
+.button3 {
+  background: #FF4C4C;
+  width: 200px;
+  height: 200px;
+}
+
+.button4 {
+  background: #50A6C2;
+  width: 200px;
+  height: 200px;
+}
+
+.middle-section {
+  width: 400px;
+  height: 100px;
+  margin: 0 auto;
+  border: 3px solid black;
+  text-align: center;
+}
+
+.game-button {
+  border: 5px solid black;
+}
+
