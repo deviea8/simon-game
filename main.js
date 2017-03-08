@@ -8,7 +8,7 @@ $('.game-button').on('click', playbackHandler)
 // Game settings & arrays.
 var thisRound = [];
 var userPlayback = [];
-var roundCounter = 1;
+var roundCounter = 0;
 
 // Empty user's playback sequence for next round.
 var emptyUserSequence = function() {
@@ -29,20 +29,21 @@ var incrementScore = function() {
 // Creates & plays button sequence based on round number.
 
 var generateButtonSequence = function() {
-  if (roundCounter > 1) {
+  if (thisRound.length >= 1) {
+    nextButtonInSequence();
     emptyUserSequence();
-    for (var i = 0; i < roundCounter-1; i++) {
-      delayButtonActivate(i);
-    }
+    animate(thisRound);
   }
-  nextButtonInSequence();
+  if (thisRound.length === 0 ) {
+    nextButtonInSequence();
+    animate(thisRound);
+  }
 }
 
 // Generates next random button in sequence.
 
 var nextButtonInSequence = function() {
   var randomButton = generateRandom();
-  activateButton(randomButton);
   thisRound.push(randomButton);
 }
 
@@ -83,6 +84,19 @@ var activateButton = function(randomButton) {
       break;
   }
 }
+
+
+function animate(sequence) {
+  var i = 0;
+  var interval = setInterval(function() {
+    activateButton(sequence[i]);
+      i++;
+      if (i >= sequence.length) {
+        clearInterval(interval);
+      }
+  }, 600);
+}
+
 
 // Creates array from user's playback sequence.
 
