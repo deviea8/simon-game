@@ -83,6 +83,7 @@ body {
   left:25%;
   border-radius:50%;
   pointer-events:none;
+  z-index: 10;
   }
 
 .logo {
@@ -118,4 +119,13 @@ body {
   margin: 0 auto;
   z-index: +1;
   position: absolute;
+}
+
+.green-circle {
+  width: 50px;
+  background: green;
+}
+
+.start-button {
+  z-index: 100000;
 }

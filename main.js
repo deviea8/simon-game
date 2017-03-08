@@ -1,11 +1,13 @@
 $(function() {
 
-$('#start-button').on('click', startRound);
+$('.start-button').on('click', startRound);
 $('.game-button').on('click', playbackHandler);
 
 })
 
+
 // Game settings & arrays.
+var active = false;
 var thisRound = [];
 var userPlayback = [];
 var roundCounter = 0;
@@ -17,6 +19,7 @@ var startRound = function() {
   setTimeout(generateButtonSequence,1000);
   incrementRound();
   console.log('Round started')
+  active = true;
 }
 
 // Empty user's playback sequence for next round.
@@ -106,10 +109,12 @@ function animate(sequence) {
 // Creates array from user's playback sequence.
 
 var playbackHandler = function() {
+  if (active === true){
   var thisButton = $(this).attr('value');
   userPlayback.push(thisButton);
   activateButton(thisButton);
   checkForMatch();
+}
 }
 
 // Checks to see if user's playback matches game sequence.
@@ -135,12 +140,13 @@ var wrongInput = function() {
   resetGameSettings();
   decrementUserScoreBy1();
   addTryAgainButton();
-  disableButtonClickListener();
   wrongInputSound();
+  active = false;
 }
 
 var wrongInputSound = function() {
   wrongButton.play();
+  youLose.play();
 }
 
 // Reset all game settings to 0.
@@ -165,17 +171,12 @@ var addTryAgainButton = function() {
   $('.score').append(startButton);
 }
 
-// Disable the ability for user to click on buttons.
-
-var disableButtonClickListener = function() {
-  $('.game-button').off("click", playbackHandler);
-}
-
 // Begin new game after incorrect sequence.
 
 var startNewGame = function() {
   userScore = 0;
   startRound();
+
 }
 
 // Audio sounds for activated buttons.
@@ -185,3 +186,4 @@ var audioButton2 = new Audio('sound2.mp3');
 var audioButton3 = new Audio('sound3.mp3');
 var audioButton4 = new Audio('sound4.mp3');
 var wrongButton = new Audio('wrong.mp3');
+var youLose = new Audio('womp-womp.mp3');
