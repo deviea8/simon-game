@@ -12,21 +12,23 @@
 </head>
 <body>
 
-  <div class = "game-board">
-    <div class= "first-two-buttons">
-      <div class = "game-button button1" value="button1">Button 1</div>
-      <div class = "game-button button2" value="button2">Button 2</div>
+  <div class="main">
+    <div class="quarter quarter1 game-button button1" value="button1"></div>
+    <div class="quarter quarter2 game-button button2" value="button2"></div>
+    <div class="quarter quarter3 game-button button3" value="button3"></div>
+    <div class="quarter quarter4 game-button button4" value="button4"></div>
+    <div class="cutout">
+      <img class="logo" src="simon-logo.png">
+      <div class="score-and-green-button">
+        <div class='scoreboard'>1</div>
+        <div class='on-button'><img class= 'green-circle' src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Ski_trail_rating_symbol-green_circle.svg"></div>
+      </div>
     </div>
-    <div class = "second-two-buttons">
-      <div class="game-button button3" value="button3">Button 3</div>
-      <div class= "game-button button4" value="button4">Button 4</div>
-    </div>
-  </div>
-  <div class = "middle-section">
+</div>
+
+  <div>
     <button class = "btn btn-primary" id = "start-button">Start Game</button>
   </div>
-  <div class = "scoreboard">
-    Score:
   </div>
   <div class = "round-count">
     Round: 1
