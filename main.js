@@ -5,7 +5,7 @@ $('.game-button').on('click', playbackHandler)
 
 })
 
-// Game settings & arrays
+// Game settings & arrays.
 var thisRound = [];
 var userPlayback = [];
 var roundCounter = 1;
@@ -18,21 +18,37 @@ var emptyUserSequence = function() {
 // Move to next round.
 var incrementRound = function() {
   roundCounter++;
-  $('.round-count').text('Round: ' + roundCounter)
+  $('.round-count').text('Round: ' + roundCounter);
 }
 
-// Generates button sequence based on round number.
+// Creates & plays button sequence based on round number.
 
 var generateButtonSequence = function() {
   if (roundCounter > 1) {
     emptyUserSequence();
     for (var i = 0; i < roundCounter-1; i++) {
-      activateButton(thisRound[i]);
+      setDelay(i);
     }
   }
   var randomButton = generateRandom();
   activateButton(randomButton);
   thisRound.push(randomButton);
+}
+
+// Generates next random button in sequence.
+
+var nextButtonInSequence = function() {
+  var randomButton = generateRandom();
+  activateButton(randomButton);
+  thisRound.push(randomButton);
+}
+
+// Set delay for button sequence. Note: Not working as intended.
+
+function setDelay(i) {
+  setTimeout(function() {
+    activateButton(thisRound[i]);
+  }, 1000);
 }
 
 // Generate a random number and match it with a button.
@@ -42,7 +58,7 @@ var generateRandom = function() {
   return 'button' + Math.floor(buttonNum);
 }
 
-// Actions associated with activated buttons (blink, sound)
+// Actions associated with activated buttons (blink, sound).
 
 var activateButton = function(randomButton) {
   console.log(randomButton + ' activated');
@@ -88,7 +104,8 @@ var checkForMatch = function() {
   }
 }
 
-// Audio sounds for activated buttons
+// Audio sounds for activated buttons.
+
 var audioButton1 = new Audio('sound1.mp3');
 var audioButton2 = new Audio('sound2.mp3');
 var audioButton3 = new Audio('sound3.mp3');
