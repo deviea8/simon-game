@@ -18,7 +18,12 @@ var emptyUserSequence = function() {
 // Move to next round.
 var incrementRound = function() {
   roundCounter++;
-  $('.round-count').text('Round: ' + roundCounter);
+  $('.round-count').text(roundCounter);
+}
+
+// Adjust user's score.
+var incrementScore = function() {
+  $('.score').text('Score: ' + (roundCounter-1));
 }
 
 // Creates & plays button sequence based on round number.
@@ -61,7 +66,6 @@ var generateRandom = function() {
 // Actions associated with activated buttons (blink, sound).
 
 var activateButton = function(randomButton) {
-  console.log(randomButton + ' activated');
   switch (randomButton) {
     case 'button1':
       $(".button1").fadeTo(100, 0.1).fadeTo(200, 1.0);
@@ -100,6 +104,7 @@ var checkForMatch = function() {
     if (a === b) {
       console.log('its a match')
       incrementRound();
+      incrementScore();
     }
   }
 }
