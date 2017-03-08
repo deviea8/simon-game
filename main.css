@@ -108,5 +108,9 @@ body {
   background: pink;
 }
 
+.lit {
+  background-color: rgba(0,0,0,0.5);
+}
+
 
 

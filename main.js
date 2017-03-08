@@ -32,12 +32,10 @@ var generateButtonSequence = function() {
   if (roundCounter > 1) {
     emptyUserSequence();
     for (var i = 0; i < roundCounter-1; i++) {
-      setDelay(i);
+      delayButtonActivate(i);
     }
   }
-  var randomButton = generateRandom();
-  activateButton(randomButton);
-  thisRound.push(randomButton);
+  nextButtonInSequence();
 }
 
 // Generates next random button in sequence.
@@ -50,7 +48,7 @@ var nextButtonInSequence = function() {
 
 // Set delay for button sequence. Note: Not working as intended.
 
-function setDelay(i) {
+function delayButtonActivate(i) {
   setTimeout(function() {
     activateButton(thisRound[i]);
   }, 1000);
