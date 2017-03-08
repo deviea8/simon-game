@@ -5,37 +5,44 @@ $('.game-button').on('click', playbackHandler)
 
 })
 
-//Audio sounds for activated buttons
-var audioButton1 = new Audio('sound1.mp3');
-var audioButton2 = new Audio('sound2.mp3');
-var audioButton3 = new Audio('sound3.mp3');
-var audioButton4 = new Audio('sound4.mp3');
-
-gameIsActive = false;
-thisRound = [];
+// Game settings & arrays
+var thisRound = [];
 var userPlayback = [];
 var roundCounter = 1;
 
+// Empty user's playback sequence for next round.
+var emptyUserSequence = function() {
+  userPlayback.length = 0;
+}
+
+// Move to next round.
+var incrementRound = function() {
+  roundCounter++;
+  $('.round-count').text('Round: ' + roundCounter)
+}
+
+// Generates button sequence based on round number.
+
 var generateButtonSequence = function() {
   if (roundCounter > 1) {
-    userPlayback.length = 0;
+    emptyUserSequence();
     for (var i = 0; i < roundCounter-1; i++) {
       activateButton(thisRound[i]);
-      thisRound.shift();
     }
   }
   var randomButton = generateRandom();
   activateButton(randomButton);
-  roundCounter++;
-  console.log(thisRound)
+  thisRound.push(randomButton);
 }
+
+// Generate a random number and match it with a button.
 
 var generateRandom = function() {
   var buttonNum = Math.random() * (5-1) + 1;
   return 'button' + Math.floor(buttonNum);
 }
 
-// Actions associated with each button being 'activated'
+// Actions associated with activated buttons (blink, sound)
 
 var activateButton = function(randomButton) {
   console.log(randomButton + ' activated');
@@ -43,32 +50,32 @@ var activateButton = function(randomButton) {
     case 'button1':
       $(".button1").fadeTo(100, 0.1).fadeTo(200, 1.0);
       audioButton1.play();
-      thisRound.push(randomButton);
       break;
     case 'button2':
       $(".button2").fadeTo(100, 0.1).fadeTo(200, 1.0)
       audioButton2.play();
-      thisRound.push(randomButton);
       break;
     case 'button3':
       $(".button3").fadeTo(100, 0.1).fadeTo(200, 1.0)
       audioButton3.play();
-      thisRound.push(randomButton);
       break;
     case 'button4':
       $(".button4").fadeTo(100, 0.1).fadeTo(200, 1.0)
       audioButton4.play();
-      thisRound.push(randomButton);
       break;
   }
 }
 
+// Creates array from user's playback sequence.
+
 var playbackHandler = function() {
   var thisButton = $(this).attr('value');
+  activateButton(thisButton);
   userPlayback.push(thisButton);
   checkForMatch();
-  console.log(userPlayback);
 }
+
+// Checks to see if user's playback matches game sequence.
 
 var checkForMatch = function() {
   var a = userPlayback.toString();
@@ -76,14 +83,13 @@ var checkForMatch = function() {
   if (userPlayback.length === thisRound.length) {
     if (a === b) {
       console.log('its a match')
+      incrementRound();
     }
   }
 }
 
-
-// var playbackHandler = function() {
-//   $('.game-button').on('click', checkForMatch());
-//   var thisButton = $(this).attr('value');
-//   userPlayback.push(thisButton);
-//   roundCounter++;
-// }
+// Audio sounds for activated buttons
+var audioButton1 = new Audio('sound1.mp3');
+var audioButton2 = new Audio('sound2.mp3');
+var audioButton3 = new Audio('sound3.mp3');
+var audioButton4 = new Audio('sound4.mp3');

@@ -47,6 +47,15 @@
   margin-top: 10px;
 }
 
+.round-count {
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  border: 2px solid gray;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
 .game-button {
   border: 5px solid black;
 }
