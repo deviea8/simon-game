@@ -1,7 +1,7 @@
 $(function() {
 
-$('#start-button').on('click', generateButtonSequence);
-$('.game-button').on('click', playbackHandler)
+$('#start-button').on('click', startRound);
+$('.game-button').on('click', playbackHandler);
 
 })
 
@@ -9,6 +9,13 @@ $('.game-button').on('click', playbackHandler)
 var thisRound = [];
 var userPlayback = [];
 var roundCounter = 0;
+
+// Start game/round.
+
+var startRound = function() {
+  generateButtonSequence();
+  incrementRound();
+}
 
 // Empty user's playback sequence for next round.
 var emptyUserSequence = function() {
@@ -23,21 +30,15 @@ var incrementRound = function() {
 
 // Adjust user's score.
 var incrementScore = function() {
-  $('.score').text('Score: ' + (roundCounter-1));
+  $('.score').text('Score: ' + (roundCounter));
 }
 
 // Creates & plays button sequence based on round number.
 
 var generateButtonSequence = function() {
-  if (thisRound.length >= 1) {
     nextButtonInSequence();
     emptyUserSequence();
     animate(thisRound);
-  }
-  if (thisRound.length === 0 ) {
-    nextButtonInSequence();
-    animate(thisRound);
-  }
 }
 
 // Generates next random button in sequence.
@@ -67,24 +68,25 @@ var generateRandom = function() {
 var activateButton = function(randomButton) {
   switch (randomButton) {
     case 'button1':
-      $(".button1").fadeTo(100, 0.1).fadeTo(200, 1.0);
+      $(".button1").fadeTo(100, 0.75).fadeTo(200, 1.0);
       audioButton1.play();
       break;
     case 'button2':
-      $(".button2").fadeTo(100, 0.1).fadeTo(200, 1.0)
+      $(".button2").fadeTo(100, 0.75).fadeTo(200, 1.0)
       audioButton2.play();
       break;
     case 'button3':
-      $(".button3").fadeTo(100, 0.1).fadeTo(200, 1.0)
+      $(".button3").fadeTo(100, 0.75).fadeTo(200, 1.0)
       audioButton3.play();
       break;
     case 'button4':
-      $(".button4").fadeTo(100, 0.1).fadeTo(200, 1.0)
+      $(".button4").fadeTo(100, 0.75).fadeTo(200, 1.0)
       audioButton4.play();
       break;
   }
 }
 
+// Loop through each button in game array and activate.
 
 function animate(sequence) {
   var i = 0;
@@ -115,7 +117,6 @@ var checkForMatch = function() {
   if (userPlayback.length === thisRound.length) {
     if (a === b) {
       console.log('its a match')
-      incrementRound();
       incrementScore();
     }
   }
