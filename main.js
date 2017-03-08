@@ -5,7 +5,6 @@ $('.game-button').on('click', playbackHandler);
 
 })
 
-
 // Game settings & arrays.
 var active = false;
 var thisRound = [];
@@ -20,6 +19,7 @@ var startRound = function() {
   incrementRound();
   console.log('Round started')
   active = true;
+  $('.start-button').addClass('start-button-hidden').removeClass('start-button')
 }
 
 // Empty user's playback sequence for next round.
@@ -166,17 +166,25 @@ var decrementUserScoreBy1 = function() {
 // Add 'try again' button when user gets sequence wrong.
 
 var addTryAgainButton = function() {
-  var startButton = $('<br><button class = "btn btn-primary" id = "try-again-button">Try Again</button>');
+  var startButton = $('<br><div class="try-again"><button class ="try-again-button">Play Again</button></div>');
   $('.score-and-green-button').text('Sorry, wrong sequence.');
-  $('.score').append(startButton);
+  $(startButton).insertAfter('.score-and-green-button');
+  listenForClicksOnStartNewGame();
+}
+
+// Listen for clicks on 'Start New Game' button
+var listenForClicksOnStartNewGame = function() {
+  $('.try-again-button').on('click', startNewGame);
 }
 
 // Begin new game after incorrect sequence.
 
 var startNewGame = function() {
-  userScore = 0;
+  console.log('start new game fired')
+  active = true;
   startRound();
-
+  $('.try-again-button').addClass('try-again-button-hidden');
+  $('.score-and-green-button').html("<div class='round-display'><div class='round-label'>Round</div><div class='round-count'>1</div></div>")
 }
 
 // Audio sounds for activated buttons.

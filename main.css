@@ -13,7 +13,6 @@ body {
   text-align: center;
   border: 2px solid gray;
   font-size: 10px;
-  margin-top: 10px;
   color: white;
   align-items: center;
   justify-content: center;
@@ -82,8 +81,6 @@ body {
   top:25%;
   left:25%;
   border-radius:50%;
-  pointer-events:none;
-  z-index: 10;
   }
 
 .logo {
@@ -92,40 +89,42 @@ body {
   margin-top: 60px;
 }
 
-.green-circle {
-  width: 30px;
-  margin-left: 20px;
-  margin-top: 5px;
-}
-
 .score-and-green-button {
   display: flex;
   flex-direction: row;
+  color: white;
   justify-content: center;
   align-items: center;
-  color: white;
-}
-
-.pink-background {
-  background: pink;
-}
-
-.lit {
-  background-color: rgba(0,0,0,0.5);
-}
-
-#try-again-button {
-  display: block;
-  margin: 0 auto;
-  z-index: +1;
-  position: absolute;
-}
-
-.green-circle {
-  width: 50px;
-  background: green;
 }
 
 .start-button {
-  z-index: 100000;
+  background-color: green;
+  margin-left: 20px;
+  border-style: solid;
+  border: 2px solid white;
+}
+
+.start-button-hidden {
+  display:none;
+}
+
+.round-label {
+  font-size: 8px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.try-again-button {
+  background-color: green;
+  border-style: solid;
+  border: 1px solid white;
+  color: white;
+}
+
+.try-again {
+  text-align: center;
+}
+
+.try-again-button-hidden {
+  display:none;
 }
