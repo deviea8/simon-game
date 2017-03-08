@@ -102,6 +102,7 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 
 .pink-background {
@@ -112,5 +113,8 @@ body {
   background-color: rgba(0,0,0,0.5);
 }
 
-
-
+#try-again-button {
+  display: block;
+  margin: 0 auto;
+  z-index: 100000;
+}

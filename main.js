@@ -2,6 +2,7 @@ $(function() {
 
 $('#start-button').on('click', startRound);
 $('.game-button').on('click', playbackHandler);
+$('#try-again-button').on('click', startRound);
 
 })
 
@@ -9,6 +10,7 @@ $('.game-button').on('click', playbackHandler);
 var thisRound = [];
 var userPlayback = [];
 var roundCounter = 0;
+var userScore = 0;
 
 // Start game/round.
 
@@ -30,7 +32,8 @@ var incrementRound = function() {
 
 // Adjust user's score.
 var incrementScore = function() {
-  $('.score').text('Score: ' + (roundCounter));
+  userScore++;
+  $('.score').text('Score: ' + (userScore));
 }
 
 // Creates & plays button sequence based on round number.
@@ -112,14 +115,36 @@ var playbackHandler = function() {
 // Checks to see if user's playback matches game sequence.
 
 var checkForMatch = function() {
-  var a = userPlayback.toString();
-  var b = thisRound.toString();
-  if (userPlayback.length === thisRound.length) {
-    if (a === b) {
-      console.log('its a match')
+  for (var i = 0; i < userPlayback.length; i++) {
+    if (userPlayback[i] !== thisRound[i]) {
+      console.log("WRONG");
+      wrongInput();
+    }
+  }
+  if (userPlayback[i] === thisRound[i]) {
+    if (userPlayback.length === thisRound.length) {
+      console.log('Its a match!')
       incrementScore();
     }
   }
+}
+
+// Actions to execute if user enters wrong sequence.
+
+var wrongInput = function() {
+  userPlayback.length = 0;
+  thisRound.length = 0;
+  roundCounter = 0;
+  var startButton = $('<br><button class = "btn btn-primary" id = "try-again-button">Try Again</button>');
+  $('.score-and-green-button').text('Sorry, wrong sequence.');
+  $('.cutout').append(startButton);
+  $('.game-button').off("click", playbackHandler);
+  $('#try-again-button').on('click', startNewGame)
+}
+
+var startNewGame = function() {
+  userScore = 0;
+  startRound();
 }
 
 // Audio sounds for activated buttons.
