@@ -1,8 +1,8 @@
 body {
-  background: url(http://wineposte.com/wp-content/uploads/2016/04/boardgames.jpg);
+  background: url(https://s-media-cache-ak0.pinimg.com/originals/32/da/c2/32dac2fe41bcd70707f7f4256a50b1df.jpg);
   background-size: cover;
   z-index: 1;
-  background-color: hsla(170,10%,100%,0.85);
+  background-color: hsla(150,20%,96%,0.85);
   background-blend-mode: overlay;;
   background-repeat: no-repeat;
   font-family: 'Roboto', sans-serif;
@@ -12,7 +12,7 @@ body {
   width: 30px;
   text-align: center;
   border: 2px solid gray;
-  font-size: 16px;
+  font-size: 10px;
   margin-top: 10px;
   color: white;
   align-items: center;
@@ -78,7 +78,7 @@ body {
   width:50%;
   height:50%;
   background-color:#2e2e2e;
-  position:absolute;
+  position:relative;
   top:25%;
   left:25%;
   border-radius:50%;
@@ -116,5 +116,6 @@ body {
 #try-again-button {
   display: block;
   margin: 0 auto;
-  z-index: 100000;
+  z-index: +1;
+  position: absolute;
 }

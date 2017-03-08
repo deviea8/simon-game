@@ -2,7 +2,6 @@ $(function() {
 
 $('#start-button').on('click', startRound);
 $('.game-button').on('click', playbackHandler);
-$('#try-again-button').on('click', startRound);
 
 })
 
@@ -15,7 +14,7 @@ var userScore = 0;
 // Start game/round.
 
 var startRound = function() {
-  generateButtonSequence();
+  setTimeout(generateButtonSequence,1000);
   incrementRound();
 }
 
@@ -107,8 +106,8 @@ function animate(sequence) {
 
 var playbackHandler = function() {
   var thisButton = $(this).attr('value');
-  activateButton(thisButton);
   userPlayback.push(thisButton);
+  activateButton(thisButton);
   checkForMatch();
 }
 
@@ -125,6 +124,7 @@ var checkForMatch = function() {
     if (userPlayback.length === thisRound.length) {
       console.log('Its a match!')
       incrementScore();
+      startRound();
     }
   }
 }
@@ -132,15 +132,47 @@ var checkForMatch = function() {
 // Actions to execute if user enters wrong sequence.
 
 var wrongInput = function() {
+  resetGameSettings();
+  decrementUserScoreBy1();
+  addTryAgainButton();
+  disableButtonClickListener();
+  wrongInputSound();
+}
+
+var wrongInputSound = function() {
+  wrongButton.play();
+}
+
+// Reset all game settings to 0.
+
+var resetGameSettings = function() {
   userPlayback.length = 0;
   thisRound.length = 0;
   roundCounter = 0;
+}
+
+// Decrease score by 1 to account for incorrect sequence.
+
+var decrementUserScoreBy1 = function() {
+  userScore -= 1;
+}
+
+// Add 'try again' button when user gets sequence wrong.
+
+var addTryAgainButton = function() {
   var startButton = $('<br><button class = "btn btn-primary" id = "try-again-button">Try Again</button>');
   $('.score-and-green-button').text('Sorry, wrong sequence.');
   $('.cutout').append(startButton);
-  $('.game-button').off("click", playbackHandler);
-  $('#try-again-button').on('click', startNewGame)
+  $('#try-again-button').click(startRound())
 }
+
+// Disable the ability for user to click on buttons.
+
+var disableButtonClickListener = function() {
+  $('.game-button').off("click", playbackHandler);
+}
+
+// Begin new game after incorrect sequence.
 
 var startNewGame = function() {
   userScore = 0;
@@ -153,3 +185,4 @@ var audioButton1 = new Audio('sound1.mp3');
 var audioButton2 = new Audio('sound2.mp3');
 var audioButton3 = new Audio('sound3.mp3');
 var audioButton4 = new Audio('sound4.mp3');
+var wrongButton = new Audio('wrong.mp3');
