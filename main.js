@@ -16,6 +16,7 @@ var userScore = 0;
 var startRound = function() {
   setTimeout(generateButtonSequence,1000);
   incrementRound();
+  console.log('Round started')
 }
 
 // Empty user's playback sequence for next round.
@@ -118,15 +119,14 @@ var checkForMatch = function() {
     if (userPlayback[i] !== thisRound[i]) {
       console.log("WRONG");
       wrongInput();
+      return
     }
   }
-  if (userPlayback[i] === thisRound[i]) {
     if (userPlayback.length === thisRound.length) {
       console.log('Its a match!')
       incrementScore();
       startRound();
-    }
-  }
+}
 }
 
 // Actions to execute if user enters wrong sequence.
@@ -162,8 +162,7 @@ var decrementUserScoreBy1 = function() {
 var addTryAgainButton = function() {
   var startButton = $('<br><button class = "btn btn-primary" id = "try-again-button">Try Again</button>');
   $('.score-and-green-button').text('Sorry, wrong sequence.');
-  $('.cutout').append(startButton);
-  $('#try-again-button').click(startRound())
+  $('.score').append(startButton);
 }
 
 // Disable the ability for user to click on buttons.
