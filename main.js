@@ -1,6 +1,6 @@
 $(function() {
 
-$('#start-button').on('click', gameHandler);
+$('#start-button').on('click', generateButtonSequence);
 $('.game-button').on('click', playbackHandler)
 
 })
@@ -11,33 +11,23 @@ var audioButton2 = new Audio('sound2.mp3');
 var audioButton3 = new Audio('sound3.mp3');
 var audioButton4 = new Audio('sound4.mp3');
 
-// Flash functionality for activated buttons
-function flash() {
-    $('.highlight').fadeOut(500);
-    $('.highlight').fadeIn(500);
-}
-
 gameIsActive = false;
 thisRound = [];
+var userPlayback = [];
 var roundCounter = 1;
 
-var gameHandler = function() {
-  if (gameIsActive === false) {
-    activateSequence();
-  }
-  else {
-    console.log('Game is already active');
-  }
- };
-
-
-var activateSequence = function() {
-    generateButtonSequence();
-  }
-
 var generateButtonSequence = function() {
+  if (roundCounter > 1) {
+    userPlayback.length = 0;
+    for (var i = 0; i < roundCounter-1; i++) {
+      activateButton(thisRound[i]);
+      thisRound.shift();
+    }
+  }
   var randomButton = generateRandom();
   activateButton(randomButton);
+  roundCounter++;
+  console.log(thisRound)
 }
 
 var generateRandom = function() {
@@ -73,12 +63,27 @@ var activateButton = function(randomButton) {
   }
 }
 
-var userPlayback = [];
-
 var playbackHandler = function() {
   var thisButton = $(this).attr('value');
   userPlayback.push(thisButton);
+  checkForMatch();
+  console.log(userPlayback);
+}
+
+var checkForMatch = function() {
+  var a = userPlayback.toString();
+  var b = thisRound.toString();
+  if (userPlayback.length === thisRound.length) {
+    if (a === b) {
+      console.log('its a match')
+    }
+  }
 }
 
 
-
+// var playbackHandler = function() {
+//   $('.game-button').on('click', checkForMatch());
+//   var thisButton = $(this).attr('value');
+//   userPlayback.push(thisButton);
+//   roundCounter++;
+// }
