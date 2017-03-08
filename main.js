@@ -17,8 +17,12 @@ var userScore = 0;
 var startRound = function() {
   setTimeout(generateButtonSequence,1000);
   incrementRound();
-  console.log('Round started')
+  hideStartButton();
   active = true;
+}
+
+// Hide start button after game begins.
+var hideStartButton = function() {
   $('.start-button').addClass('start-button-hidden').removeClass('start-button')
 }
 
@@ -30,17 +34,27 @@ var emptyUserSequence = function() {
 // Move to next round.
 var incrementRound = function() {
   roundCounter++;
+  updateRoundCountInUI();
+}
+
+
+//Update round number in UI.
+var updateRoundCountInUI = function() {
   $('.round-count').text(roundCounter);
 }
 
 // Adjust user's score.
 var incrementScore = function() {
   userScore++;
+  updateScoreInUI();
+}
+
+// Update user's score in UI.
+var updateScoreInUI = function() {
   $('.score').text('Score: ' + (userScore));
 }
 
 // Creates & plays button sequence based on round number.
-
 var generateButtonSequence = function() {
     nextButtonInSequence();
     emptyUserSequence();
@@ -48,14 +62,12 @@ var generateButtonSequence = function() {
 }
 
 // Generates next random button in sequence.
-
 var nextButtonInSequence = function() {
   var randomButton = generateRandom();
   thisRound.push(randomButton);
 }
 
 // Set delay for button sequence. Note: Not working as intended.
-
 function delayButtonActivate(i) {
   setTimeout(function() {
     activateButton(thisRound[i]);
@@ -63,14 +75,12 @@ function delayButtonActivate(i) {
 }
 
 // Generate a random number and match it with a button.
-
 var generateRandom = function() {
   var buttonNum = Math.random() * (5-1) + 1;
   return 'button' + Math.floor(buttonNum);
 }
 
 // Actions associated with activated buttons (blink, sound).
-
 var activateButton = function(randomButton) {
   switch (randomButton) {
     case 'button1':
@@ -93,7 +103,6 @@ var activateButton = function(randomButton) {
 }
 
 // Loop through each button in game array and activate.
-
 function animate(sequence) {
   var i = 0;
   var interval = setInterval(function() {
@@ -107,7 +116,6 @@ function animate(sequence) {
 
 
 // Creates array from user's playback sequence.
-
 var playbackHandler = function() {
   if (active === true){
   var thisButton = $(this).attr('value');
@@ -118,7 +126,6 @@ var playbackHandler = function() {
 }
 
 // Checks to see if user's playback matches game sequence.
-
 var checkForMatch = function() {
   for (var i = 0; i < userPlayback.length; i++) {
     if (userPlayback[i] !== thisRound[i]) {
@@ -135,7 +142,6 @@ var checkForMatch = function() {
 }
 
 // Actions to execute if user enters wrong sequence.
-
 var wrongInput = function() {
   resetGameSettings();
   decrementUserScoreBy1();
@@ -144,13 +150,13 @@ var wrongInput = function() {
   active = false;
 }
 
+// Sounds for wrong user button press.
 var wrongInputSound = function() {
   wrongButton.play();
   youLose.play();
 }
 
 // Reset all game settings to 0.
-
 var resetGameSettings = function() {
   userPlayback.length = 0;
   thisRound.length = 0;
@@ -164,7 +170,6 @@ var decrementUserScoreBy1 = function() {
 }
 
 // Add 'try again' button when user gets sequence wrong.
-
 var addTryAgainButton = function() {
   var startButton = $('<br><div class="try-again"><button class ="try-again-button">Play Again</button></div>');
   $('.score-and-green-button').text('Sorry, wrong sequence.');
@@ -178,7 +183,6 @@ var listenForClicksOnStartNewGame = function() {
 }
 
 // Begin new game after incorrect sequence.
-
 var startNewGame = function() {
   console.log('start new game fired')
   active = true;
@@ -188,7 +192,6 @@ var startNewGame = function() {
 }
 
 // Audio sounds for activated buttons.
-
 var audioButton1 = new Audio('sound1.mp3');
 var audioButton2 = new Audio('sound2.mp3');
 var audioButton3 = new Audio('sound3.mp3');
