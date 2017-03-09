@@ -96,19 +96,31 @@ var generateRandom = function() {
 var activateButton = function(randomButton) {
   switch (randomButton) {
     case 'button1':
-      $(".button1").fadeTo(100, 0.75).fadeTo(200, 1.0);
+      $(".button1").addClass('flash-green');
+      window.setTimeout(function() {
+        $('.button1').removeClass('flash-green');
+       }, 200);
       audioButton1.play();
       break;
     case 'button2':
-      $(".button2").fadeTo(100, 0.75).fadeTo(200, 1.0)
+      $(".button2").addClass('flash-red');
+      window.setTimeout(function() {
+        $('.button2').removeClass('flash-red');
+       }, 200);
       audioButton2.play();
       break;
     case 'button3':
-      $(".button3").fadeTo(100, 0.75).fadeTo(200, 1.0)
+      $(".button3").addClass('flash-yellow');
+      window.setTimeout(function() {
+        $('.button3').removeClass('flash-yellow');
+       }, 200);
       audioButton3.play();
       break;
     case 'button4':
-      $(".button4").fadeTo(100, 0.75).fadeTo(200, 1.0)
+      $(".button4").addClass('flash-blue');
+      window.setTimeout(function() {
+        $('.button4').removeClass('flash-blue');
+       }, 200);
       audioButton4.play();
       break;
   }
@@ -130,11 +142,11 @@ function animate(sequence) {
 // Creates array from user's playback sequence.
 var playbackHandler = function() {
   if (active === true){
-  var thisButton = $(this).attr('value');
-  userPlayback.push(thisButton);
-  activateButton(thisButton);
-  checkForMatch();
-}
+    var thisButton = $(this).attr('value');
+    userPlayback.push(thisButton);
+    activateButton(thisButton);
+    checkForMatch();
+  }
 }
 
 // Checks to see if user's playback matches game sequence.
@@ -150,7 +162,7 @@ var checkForMatch = function() {
       console.log('Its a match!')
       incrementScore();
       startRound();
-}
+  }
 }
 
 // Actions to execute if user enters wrong sequence.
@@ -175,11 +187,6 @@ var resetGameSettings = function() {
   roundCounter = 0;
 }
 
-// Decrease score by 1 to account for incorrect sequence.
-
-var decrementUserScoreBy1 = function() {
-  userScore -= 1;
-}
 
 // Add 'try again' button when user gets sequence wrong.
 var addTryAgainButton = function() {
