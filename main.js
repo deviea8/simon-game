@@ -11,6 +11,7 @@ var thisRound = [];
 var userPlayback = [];
 var roundCounter = 0;
 var userScore = 0;
+var buttonFlashTime = 600;
 
 // Start game/round.
 var startRound = function() {
@@ -132,7 +133,7 @@ function animate(sequence) {
       if (i >= sequence.length) {
         clearInterval(interval);
       }
-  }, 600);
+  }, buttonFlashTime);
 }
 
 // Creates array from user's playback sequence.
@@ -162,9 +163,10 @@ var checkForMatch = function() {
 
 // Display success message to user upon successful sequence input.
 var displaySuccessMessage = function() {
-  $('.success-message').removeClass('success-message-hidden');
+  var successMessage = $("<div class='success-message'>Correct!</div>");
+  $(successMessage).insertAfter('.score-and-green-button');
     window.setTimeout(function() {
-      $('.success-message').addClass('success-message-hidden');
+      $(successMessage).remove();
     }, 600);
 }
 
@@ -221,3 +223,15 @@ var audioButton3 = new Audio('sound3.mp3');
 var audioButton4 = new Audio('sound4.mp3');
 var wrongButton = new Audio('wrong.mp3');
 var youLose = new Audio('womp-womp.mp3');
+
+
+
+/* Set the width of the side navigation to 250px */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}

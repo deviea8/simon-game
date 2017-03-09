@@ -12,7 +12,6 @@
   <script src="main.js"></script>
 </head>
 <body>
-
   <div class="main">
     <div class="quarter quarter1 game-button button1" value="button1"></div>
     <div class="quarter quarter2 game-button button2" value="button2"></div>
@@ -26,9 +25,7 @@
           <div class='round-count'>0</div>
         </div>
         <div class='on-button'><button class= 'start-button'>Start</button></div>
-
       </div>
-      <div class='success-message success-message-hidden'>Correct!</div>
     </div>
   </div>
 
@@ -37,6 +34,23 @@
   <div class = "score">
     Score: 0
   </div>
+  <div class='game-history-tab' onclick="openNav()">
+    View Score History
+  </div>
+
+
+<!--Side nav -->
+<div id="mySidenav" class="sidenav">
+  <a class="closebtn" onclick="closeNav()">&times;</a>
+  <h3 class="top-3">Game History Scoreboard</h3>
+  <div class="top-score-list">
+    <div>Game 1:</div>
+    <div>Game 2:</div>
+    <div>Game 3:</div>
+    <div>Game 4:</div>
+    <div>Game 5:</div>
+</div>
+</div>
 
 </body>
 </html>
