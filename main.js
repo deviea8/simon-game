@@ -1,6 +1,6 @@
 $(function() {
 
-$('.start-button').on('click', startRound);
+$('.start-button').on('click', startGame);
 $('.game-button').on('click', playbackHandler);
 
 })
@@ -12,6 +12,13 @@ var userPlayback = [];
 var roundCounter = 0;
 var userScore = 0;
 var buttonFlashTime = 600;
+var numGamesPlayed = 0;
+
+// Start game for the first time.
+var startGame = function() {
+  startRound();
+  numGamesPlayed++
+}
 
 // Start game/round.
 var startRound = function() {
@@ -27,7 +34,7 @@ var makeCutoutNotClickable = function() {
 $('.cutout').css('pointer-events','none');
 }
 
-//Make middle section of board clickable.
+//Make middle section of board clickable again.
 var makeCutoutClickable = function() {
 $('.cutout').css('pointer-events','auto');
 }
@@ -177,6 +184,12 @@ var wrongInput = function() {
   wrongInputSound();
   makeCutoutClickable();
   active = false;
+  addToScoreboard();
+}
+
+var addToScoreboard = function() {
+  var scoreboardListItem = $("<div>Game " + numGamesPlayed + ":</div><div>" + userScore + "</div><br>");
+  $('.top-score-list').append(scoreboardListItem);
 }
 
 // Sounds for wrong user button press.
@@ -194,7 +207,7 @@ var resetGameSettings = function() {
 
 // Add 'try again' button when user gets sequence wrong.
 var addTryAgainButton = function() {
-  var startButton = $('<br><div class="try-again"><button class ="try-again-button">Play Again</button></div>');
+  var startButton = $('<br><div class="try-again"><button class ="try-again-button">New Game</button></div>');
   $('.score-and-green-button').text('Sorry, wrong sequence.');
   $(startButton).insertAfter('.score-and-green-button');
   listenForClicksOnStartNewGame();
@@ -207,12 +220,22 @@ var listenForClicksOnStartNewGame = function() {
 
 // Begin new game after incorrect sequence.
 var startNewGame = function() {
-  console.log('start new game fired')
   active = true;
   userScore = 0;
   updateScoreInUI();
   startRound();
+  hideTryAgainButton();
+  restoreRoundDisplay();
+  numGamesPlayed++;
+}
+
+// Hide 'try again' button
+var hideTryAgainButton = function() {
   $('.try-again-button').addClass('try-again-button-hidden');
+}
+
+// Restore round counter display in UI.
+var restoreRoundDisplay = function() {
   $('.score-and-green-button').html("<div class='round-display'><div class='round-label'>Round</div><div class='round-count'>1</div></div>")
 }
 
@@ -224,14 +247,12 @@ var audioButton4 = new Audio('sound4.mp3');
 var wrongButton = new Audio('wrong.mp3');
 var youLose = new Audio('womp-womp.mp3');
 
-
-
-/* Set the width of the side navigation to 250px */
+// Opens score history slideout.
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
 }
 
-/* Set the width of the side navigation to 0 */
+// Closes score history slideout.
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
