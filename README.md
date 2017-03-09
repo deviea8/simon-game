@@ -29,7 +29,7 @@ Once a player lands on the Digital Simon site, they will see the virtual Simon g
 
 ## Wireframes
 
-View wireframes here: https://goo.gl/2pRFRa)
+View wireframes here: https://goo.gl/2pRFRa
 
 
 ## Future Development
