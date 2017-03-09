@@ -241,3 +241,21 @@ body {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
 }
+
+@media screen and (max-width: 530px) {
+    .main {
+        width: 375px;
+        height: 375px;
+  }
+    .try-again-button {
+        background-color: green;
+        border-style: solid;
+        border: 1px solid white;
+        color: white;
+        font-size: 10px;
+  }
+    .score-and-green-button {
+      text-align: center;
+      font-size: 10px;
+  }
+}
