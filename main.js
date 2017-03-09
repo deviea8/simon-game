@@ -188,7 +188,7 @@ var wrongInput = function() {
 }
 
 var addToScoreboard = function() {
-  var scoreboardListItem = $("<div>Game " + numGamesPlayed + ":</div><div>" + userScore + "</div><br>");
+  var scoreboardListItem = $("<div>Game " + numGamesPlayed + ":</div><div class='score-display'>" + userScore + "</div><br>");
   $('.top-score-list').append(scoreboardListItem);
 }
 
