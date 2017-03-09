@@ -55,6 +55,7 @@ body {
   border-radius:100% 0 0 0;
   border: 15px solid #2e2e2e;
 }
+
 .quarter2 {
   top:0;
   right:0;
@@ -62,6 +63,7 @@ body {
   border-radius:0 100% 0 0 ;
   border: 15px solid #2e2e2e;
 }
+
 .quarter3 {
   bottom:0;
   left:0;
@@ -69,6 +71,7 @@ body {
   border-radius:0 0 0 100%;
   border: 15px solid #2e2e2e;
 }
+
 .quarter4 {
   bottom:0;
   right:0;
@@ -76,6 +79,7 @@ body {
   border-radius:0 0 100% 0 ;
   border: 15px solid #2e2e2e;
 }
+
 .cutout {
   width:50%;
   height:50%;
@@ -147,4 +151,14 @@ body {
 
 .flash-yellow {
   background-color: #ffff00;
+}
+
+.success-message {
+  color: #66CD00;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.success-message-hidden {
+  display:none;
 }

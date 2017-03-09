@@ -13,7 +13,6 @@ var roundCounter = 0;
 var userScore = 0;
 
 // Start game/round.
-
 var startRound = function() {
   setTimeout(generateButtonSequence,1000);
   incrementRound();
@@ -21,7 +20,6 @@ var startRound = function() {
   makeCutoutNotClickable();
   active = true;
 }
-
 
 //Make middle section of board not clickable.
 var makeCutoutNotClickable = function() {
@@ -48,7 +46,6 @@ var incrementRound = function() {
   roundCounter++;
   updateRoundCountInUI();
 }
-
 
 //Update round number in UI.
 var updateRoundCountInUI = function() {
@@ -138,7 +135,6 @@ function animate(sequence) {
   }, 600);
 }
 
-
 // Creates array from user's playback sequence.
 var playbackHandler = function() {
   if (active === true){
@@ -153,16 +149,23 @@ var playbackHandler = function() {
 var checkForMatch = function() {
   for (var i = 0; i < userPlayback.length; i++) {
     if (userPlayback[i] !== thisRound[i]) {
-      console.log("WRONG");
       wrongInput();
       return
     }
   }
     if (userPlayback.length === thisRound.length) {
-      console.log('Its a match!')
       incrementScore();
       startRound();
+      displaySuccessMessage();
   }
+}
+
+// Display success message to user upon successful sequence input.
+var displaySuccessMessage = function() {
+  $('.success-message').removeClass('success-message-hidden');
+    window.setTimeout(function() {
+      $('.success-message').addClass('success-message-hidden');
+    }, 600);
 }
 
 // Actions to execute if user enters wrong sequence.
@@ -186,7 +189,6 @@ var resetGameSettings = function() {
   thisRound.length = 0;
   roundCounter = 0;
 }
-
 
 // Add 'try again' button when user gets sequence wrong.
 var addTryAgainButton = function() {
