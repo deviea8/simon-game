@@ -184,6 +184,15 @@ body {
     transition: 0.3s
 }
 
+.difficulty-toggle {
+  margin-top: 20px;
+  text-align:center;
+}
+
+.difficulty-toggle-hidden {
+  display: none;
+}
+
 .game-history-tab {
   width: 200px;
   margin: 0 auto;
@@ -258,4 +267,8 @@ body {
       text-align: center;
       font-size: 10px;
   }
+
+    .difficulty-toggle {
+      display:none;
 }
+

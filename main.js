@@ -25,8 +25,14 @@ var startRound = function() {
   setTimeout(generateButtonSequence,1000);
   incrementRound();
   hideStartButton();
+  hideDifficultyToggle();
   makeCutoutNotClickable();
   active = true;
+}
+
+// Hide difficulty toggle after game begins.
+var hideDifficultyToggle = function() {
+  $('.difficulty-toggle').addClass('difficulty-toggle-hidden').removeClass('difficulty-toggle')
 }
 
 //Make middle section of board not clickable.
