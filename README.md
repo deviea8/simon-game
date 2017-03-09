@@ -27,9 +27,9 @@ Once a player lands on the Digital Simon site, they will see the virtual Simon g
   * Adjust gamepiece size on mobile devices
 
 
-## Wireframe
+## Wireframes
 
-![Wireframes](https://goo.gl/2pRFRa)
+View wireframes here: https://goo.gl/2pRFRa)
 
 
 ## Future Development
