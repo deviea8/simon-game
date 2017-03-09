@@ -18,7 +18,6 @@ var difficultyLevel = 'easy';
 
 // // Check difficulty level.
 var checkDifficultyLevel = function() {
-  console.log('checked difficulty level')
   var difficultyHard = $('.off')
   if (difficultyHard.length === 1){
     difficultyLevel = 'hard';
@@ -29,7 +28,7 @@ var checkDifficultyLevel = function() {
 // Start game for the first time.
 var startGame = function() {
   startRound();
-  numGamesPlayed++
+  numGamesPlayed++;
 }
 
 // Start game/round.
@@ -55,22 +54,22 @@ var setDifficultyLevel = function() {
 
 // Hide difficulty toggle after game begins.
 var hideDifficultyToggle = function() {
-  $('.difficulty-toggle').addClass('difficulty-toggle-hidden').removeClass('difficulty-toggle')
+  $('.difficulty-toggle').addClass('difficulty-toggle-hidden').removeClass('difficulty-toggle');
 }
 
 //Make middle section of board not clickable.
 var makeCutoutNotClickable = function() {
-$('.cutout').css('pointer-events','none');
+  $('.cutout').css('pointer-events','none');
 }
 
 //Make middle section of board clickable again.
 var makeCutoutClickable = function() {
-$('.cutout').css('pointer-events','auto');
+  $('.cutout').css('pointer-events','auto');
 }
 
 // Hide start button after game begins.
 var hideStartButton = function() {
-  $('.start-button').addClass('start-button-hidden').removeClass('start-button')
+  $('.start-button').addClass('start-button-hidden').removeClass('start-button');
 }
 
 // Empty user's playback sequence for next round.
@@ -265,7 +264,7 @@ var hideTryAgainButton = function() {
 
 // Restore round counter display in UI.
 var restoreRoundDisplay = function() {
-  $('.score-and-green-button').html("<div class='round-display'><div class='round-label'>Round</div><div class='round-count'>1</div></div>")
+  $('.score-and-green-button').html("<div class='round-display'><div class='round-label'>Round</div><div class='round-count'>1</div></div>");
 }
 
 // Audio sounds for activated buttons.
