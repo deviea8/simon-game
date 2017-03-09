@@ -18,7 +18,19 @@ var startRound = function() {
   setTimeout(generateButtonSequence,1000);
   incrementRound();
   hideStartButton();
+  makeCutoutNotClickable();
   active = true;
+}
+
+
+//Make middle section of board not clickable.
+var makeCutoutNotClickable = function() {
+$('.cutout').css('pointer-events','none');
+}
+
+//Make middle section of board clickable.
+var makeCutoutClickable = function() {
+$('.cutout').css('pointer-events','auto');
 }
 
 // Hide start button after game begins.
@@ -144,9 +156,9 @@ var checkForMatch = function() {
 // Actions to execute if user enters wrong sequence.
 var wrongInput = function() {
   resetGameSettings();
-  decrementUserScoreBy1();
   addTryAgainButton();
   wrongInputSound();
+  makeCutoutClickable();
   active = false;
 }
 
@@ -186,6 +198,8 @@ var listenForClicksOnStartNewGame = function() {
 var startNewGame = function() {
   console.log('start new game fired')
   active = true;
+  userScore = 0;
+  updateScoreInUI();
   startRound();
   $('.try-again-button').addClass('try-again-button-hidden');
   $('.score-and-green-button').html("<div class='round-display'><div class='round-label'>Round</div><div class='round-count'>1</div></div>")
