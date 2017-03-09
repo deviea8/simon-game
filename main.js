@@ -2,6 +2,7 @@ $(function() {
 
 $('.start-button').on('click', startGame);
 $('.game-button').on('click', playbackHandler);
+$('.difficulty-button').on('click', checkDifficultyLevel);
 
 })
 
@@ -13,6 +14,17 @@ var roundCounter = 0;
 var userScore = 0;
 var buttonFlashTime = 600;
 var numGamesPlayed = 0;
+var difficultyLevel = 'easy';
+
+// // Check difficulty level.
+var checkDifficultyLevel = function() {
+  console.log('checked difficulty level')
+  var difficultyHard = $('.off')
+  if (difficultyHard.length === 1){
+    difficultyLevel = 'hard';
+  }
+  setDifficultyLevel();
+}
 
 // Start game for the first time.
 var startGame = function() {
@@ -24,10 +36,21 @@ var startGame = function() {
 var startRound = function() {
   setTimeout(generateButtonSequence,1000);
   incrementRound();
+  checkDifficultyLevel();
   hideStartButton();
   hideDifficultyToggle();
   makeCutoutNotClickable();
   active = true;
+}
+
+// Set difficulty level for game play.
+var setDifficultyLevel = function() {
+  if (difficultyLevel === 'easy') {
+    buttonFlashTime = 675;
+  }
+  else if (difficultyLevel === 'hard') {
+    buttonFlashTime = 500;
+  }
 }
 
 // Hide difficulty toggle after game begins.
