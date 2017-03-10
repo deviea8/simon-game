@@ -1,5 +1,5 @@
 body {
-  background: url(https://s-media-cache-ak0.pinimg.com/originals/32/da/c2/32dac2fe41bcd70707f7f4256a50b1df.jpg);
+  background-image: url("80s-background.jpg");
   background-size: cover;
   z-index: 1;
   background-color: hsla(150,20%,96%,0.85);
@@ -88,7 +88,7 @@ body {
   left:25%;
   border-radius:50%;
   z-index: 2;
-  }
+}
 
 .logo {
   width: 70%;
@@ -132,10 +132,6 @@ body {
   text-align: center;
 }
 
-.try-again-button-hidden {
-  display:none;
-}
-
 .flash-blue {
   background-color: #63D1F4;
 }
@@ -158,23 +154,20 @@ body {
   margin-top: 10px;
 }
 
-
-/* The side navigation menu */
 .sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 100; /* Stay on top */
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 100;
     top: 0;
     right: 0;
-    background-color: #111; /* Black*/
+    background-color: #111;
     opacity: 0.8;
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
 }
 
-/* The navigation menu links */
 .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
@@ -210,11 +203,6 @@ body {
   cursor:pointer;
 }
 
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover, .offcanvas a:focus{
-  color: #f1f1f1;
-}
-
 .top-3 {
   text-align:center;
   color: white;
@@ -226,26 +214,19 @@ body {
   text-align: center;
 }
 
-/* Position and style the close button (top right corner) */
 .sidenav .closebtn {
   position: absolute;
   top: 0;
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+  cursor: pointer;
 }
 
 .score-display {
   color: #66CD00;
 }
 
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
-  transition: margin-left .5s;
-  padding: 20px;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
@@ -271,4 +252,3 @@ body {
     .difficulty-toggle {
       display:none;
 }
-

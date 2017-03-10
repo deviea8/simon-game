@@ -3,6 +3,8 @@ $(function() {
 $('.start-button').on('click', startGame);
 $('.game-button').on('click', playbackHandler);
 $('.difficulty-button').on('click', checkDifficultyLevel);
+$('.game-history-tab').on('click', openNav);
+$('.closebtn').on('click', closeNav);
 
 })
 
@@ -259,7 +261,7 @@ var startNewGame = function() {
 
 // Hide 'try again' button
 var hideTryAgainButton = function() {
-  $('.try-again-button').addClass('try-again-button-hidden');
+  $('.try-again-button').remove();
 }
 
 // Restore round counter display in UI.
@@ -275,12 +277,14 @@ var audioButton4 = new Audio('sound4.mp3');
 var wrongButton = new Audio('wrong.mp3');
 var youLose = new Audio('womp-womp.mp3');
 
+
+
 // Opens score history slideout.
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
+var openNav = function() {
+    $('#mySidenav').css('width', '250px');
 }
 
 // Closes score history slideout.
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
+var closeNav = function() {
+    $('#mySidenav').css('width', '0');
 }
